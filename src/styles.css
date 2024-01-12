@@ -7,6 +7,8 @@
     
     font-family: 'Varela Round', sans-serif;
     color: rgba(0, 0, 0, 0.5);
+
+    transition: .5s;
 }
 
 body{

@@ -36,6 +36,12 @@ export class TodoService {
     this.saveTodos();
   }
 
+  deleteAllTodo(): void {
+    this.todos = [];
+    this.lastId = 0;
+    this.saveTodos();
+  }
+
   private saveTodos(): void {
     localStorage.setItem('todos', JSON.stringify(this.todos));
     localStorage.setItem('lastId', this.lastId.toString());

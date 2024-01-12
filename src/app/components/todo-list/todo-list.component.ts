@@ -46,4 +46,9 @@ export class TodoListComponent {
     this.todoService.markAsCompleted(todoId);
     this.getTodos();
   }
+
+  deleteAllTodo(): void {
+    this.todoService.deleteAllTodo();
+    this.getTodos();
+  }
 }

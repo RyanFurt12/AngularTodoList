@@ -88,6 +88,15 @@ h1{
     color: rgba(0, 0, 0, 0.8);
 }
 
+.todo_container{
+    width: 100%;
+    overflow: scroll;
+}
+
+.todo_container::-webkit-scrollbar { 
+    display: none;
+  }
+
 .todo{
     padding: 5px;
     width: 100%;

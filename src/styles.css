@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    font-family: 'Varela Round', sans-serif;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body{
+    width: 100%;
+    min-height: 100vh;
+    
+    background-color: #F93254;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

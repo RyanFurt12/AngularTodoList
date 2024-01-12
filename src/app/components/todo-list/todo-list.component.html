@@ -1,0 +1,13 @@
+<div class="todo_area">
+    <h1>Todo-List</h1>
+    <div class="input_area">
+        <input [(ngModel)]="newTodoText" placeholder="Novo to-do" (keyup.enter)="addTodo()" />
+        <button (click)="addTodo()">+</button>
+    </div>
+
+    <div class="todo"  *ngFor="let todo of todos">
+            <p class="{{todo.completed.toString()}}" (click)="markAsCompleted(todo.id)">{{ todo.text }}</p>
+            
+            <button class="button_delete" (click)="deleteTodo(todo.id)">x</button>
+    </div>
+</div>

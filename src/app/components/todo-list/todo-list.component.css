@@ -1,0 +1,115 @@
+.todo_area{
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    min-height: 30vh;
+    max-height: 80vh;
+    max-width: 90vw;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo_area::after{
+    z-index: -1;
+    content: "";
+    background-color: rgb(220, 220, 220);
+    border-radius: 10px;
+    height: 50%;
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+}
+
+.todo_area::before{
+    z-index: -1;
+    content: "";
+    background-color: rgb(190, 190, 190);
+    border-radius: 10px;
+    height: 100%;
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -16px;
+}
+
+h1{
+    color: #F93254;
+    font-size: 50px;
+}
+
+.input_area{
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input_area input{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 5px;
+    border-radius: 5px;
+    width: 90%;
+    font-size: 15px;
+}
+
+.input_area input:hover{
+    border-bottom: 3px solid rgba(0, 0, 0, 0.8);
+    margin-bottom: -2px;
+
+}
+
+.input_area button{
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 5px;
+    width: 10%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.input_area button:hover{
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.todo{
+    padding: 5px;
+    width: 100%;
+    position: relative;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    word-break: break-all;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo .button_delete{
+    position: absolute;
+    background-color: white;
+    border: none;
+    width: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.todo:hover .button_delete{
+    display: block;
+    right: 0;
+}
+
+.todo p{
+    color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.todo p.true{
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.5);
+}

@@ -1,1 +1,6 @@
-<app-todo-list></app-todo-list>
+<div>
+    <app-todo-list *ngFor="let list of todoLists" [id]=list.id></app-todo-list>
+</div>
+<div>
+    <button (click)="addList()">+</button>
+</div>

@@ -1,0 +1,15 @@
+div{
+    display: flex;
+    gap: 30px 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+button{
+    background-color: transparent;
+    border: none;
+    font-size: 80px;
+    cursor: pointer;
+}

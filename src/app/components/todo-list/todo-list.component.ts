@@ -17,7 +17,7 @@ import { CompartilharDadosService } from '../../services/compartilhar-dados.serv
 export class TodoListComponent {
   @Input()
   id!: number;
-  todoList!: TodoList;
+  todoList: TodoList | undefined;
   newTodoText = '';
 
   constructor(private todoService: TodoService, private compartilharService:CompartilharDadosService) {
@@ -55,5 +55,15 @@ export class TodoListComponent {
   deleteAllTodo(): void {
     this.todoService.deleteList(this.id);
     this.compartilharService.emitirItemDeletado();
+  }
+
+  changeTitle():void {
+    let newTitle:string = prompt("Qual o novo titulo? ")??"ToDo-List";
+    newTitle = newTitle == "" ? "ToDo-List" : newTitle;
+    
+    if(this.todoList){
+      this.todoList.name = newTitle;
+      this.todoService.updateListTitle(this.todoList);
+    } 
   }
 }

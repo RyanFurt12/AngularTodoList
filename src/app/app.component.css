@@ -13,3 +13,7 @@ button{
     font-size: 80px;
     cursor: pointer;
 }
+
+button:hover{
+    scale: 1.2;
+}

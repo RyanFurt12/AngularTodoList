@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Todo } from '../../todo';
@@ -9,24 +9,28 @@ import { CompartilharDadosService } from '../../services/compartilhar-dados.serv
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [ CommonModule, FormsModule ],
+  imports: [CommonModule, FormsModule],
   templateUrl: './todo-list.component.html',
-  styleUrl: './todo-list.component.css'
+  styleUrl: './todo-list.component.css',
 })
-
 export class TodoListComponent {
-  @Input()
-  id!: number;
+  @Input() id!: number;
   todoList: TodoList | undefined;
   newTodoText = '';
+  isEditing = false;
+  newTitle = '';
+  @ViewChild('editInput') editInput!: ElementRef;
 
-  constructor(private todoService: TodoService, private compartilharService:CompartilharDadosService) {
+  constructor(
+    private todoService: TodoService,
+    private compartilharService: CompartilharDadosService
+  ) {
     this.getTodos();
   }
 
   getTodos(): void {
     this.todoList = this.todoService.getTodos(this.id);
-    if(this.todoList == undefined) setTimeout(() => {this.getTodos();}, 200);
+    if (this.todoList == undefined) setTimeout(() => { this.getTodos(); }, 200);
   }
 
   addTodo(): void {
@@ -57,13 +61,28 @@ export class TodoListComponent {
     this.compartilharService.emitirItemDeletado();
   }
 
-  changeTitle():void {
-    let newTitle:string = prompt("Qual o novo titulo? ")??"ToDo-List";
-    newTitle = newTitle == "" ? "ToDo-List" : newTitle;
-    
-    if(this.todoList){
-      this.todoList.name = newTitle;
-      this.todoService.updateListTitle(this.todoList);
-    } 
+  toggleEditTitle(): void {
+    this.isEditing = true;
+    this.newTitle = this.todoList?.name ?? ''; 
+    setTimeout(() => {
+      this.adjustWidthTitleInput();
+      this.editInput.nativeElement.focus(); 
+    }, 0);
+  }
+
+  adjustWidthTitleInput(): void {
+    const input = this.editInput.nativeElement;
+    const value = input.value;
+    input.style.width = `${value.length+1}ch`;
+  }
+
+  saveTitle(): void {
+    if (this.newTitle.trim()) {
+      if (this.todoList) {
+        this.todoList.name = this.newTitle;
+        this.todoService.updateListTitle(this.todoList);
+      }
+    }
+    this.isEditing = false;
   }
 }
